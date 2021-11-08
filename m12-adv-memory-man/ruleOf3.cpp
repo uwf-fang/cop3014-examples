@@ -25,11 +25,7 @@ class MyClass {
   }
 
   // copy constructor
-  MyClass(const MyClass& other) {
-    size = other.size;
-    arr = new int[size];
-    for (int i = 0; i < size; i++) arr[i] = other.arr[i];
-  }
+  MyClass(const MyClass& other);
 
   // destructor
   ~MyClass() { delete[] arr; }
@@ -49,6 +45,12 @@ class MyClass {
 
   int getSize() { return size; }
 };
+
+MyClass::MyClass(const MyClass& other) {
+    size = other.size;
+    arr = new int[size];
+    for (int i = 0; i < size; i++) arr[i] = other.arr[i];
+  }
 
 void print(MyClass obj) {
   for (int i = 0; i < obj.getSize(); i++) {

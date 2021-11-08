@@ -21,7 +21,7 @@ List::List() {
 
 List::List(int value, int repeat) {
   size = repeat;
-  array = new int[repeat];
+  array = new int[size];
   for (int i = 0; i < repeat; i++)
     array[i] = value;
 }
@@ -39,11 +39,12 @@ void List::print() {
 }
 
 int main() {
-  List list(10, 11);
+  List list(5, 10);  // the constructor taking two int values is triggered
+  // default copy constructor is triggered, same as List list2(list);
   List list2 = list;
-  List list3;
+  List list3;  // the default constructor will be triggered
 
-  list3 = list;
+  list3 = list;  // default assignment operater will be triggered
 
   list.print();
   list2.print();
