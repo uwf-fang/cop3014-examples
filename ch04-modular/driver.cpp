@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "store.hpp"
-#include "store_item.hpp"
+#include "store-item.hpp"
 
 void test_store_item() {
   StoreItem item1("Apple");

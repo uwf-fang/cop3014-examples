@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "store_item.hpp"
+#include "store-item.hpp"
 
 class Store
 {
