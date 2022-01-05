@@ -1,5 +1,6 @@
 /**
  * Demonstration of the difference between pointer and reference type
+ * as function parameters
  */
 #include <iostream>
 using namespace std;

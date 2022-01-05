@@ -14,7 +14,6 @@ class State {
 
 int main() {
   State *states1; // 1d array of object
-  // State state[];  // 1d array of object
 
   states1 = new State[100];
   for (int i = 0; i < 100; i++)
@@ -22,9 +21,9 @@ int main() {
   cout << states1[0].getName();
   delete [] states1;
 
-  State **states2;  // 1d array of pointers to the state object
-  // State states[][]; // 2d array of object, logically correct
-  // State *states[];  // 1d array of pointers to the state object
+  // expect 1d array of pointers to the state object
+  // can be also used as 2d array of objects
+  State **states2;
 
   states2 = new State *[100];
   for (int i = 0; i < 100; i++)

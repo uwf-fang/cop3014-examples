@@ -2,9 +2,10 @@
 using namespace std;
 
 int linearSearch(int arr[], int size, int key);
+int binarySearch(int arr[], int size, int key);
+
 void testLinearSearch();
 void testBinarySearch();
-int binarySearch(int arr[], int size, int key);
 
 int main() {
   // testLinearSearch();
