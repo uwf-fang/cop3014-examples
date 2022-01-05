@@ -1,5 +1,5 @@
 #include <iostream>
-#include "threeintsfcts.h"
+#include "threeintsfcts.hpp"
 using namespace std;
 
 // Normally lots of other code here

@@ -19,7 +19,7 @@ void testVec() {
 
   // get size
   cout << v1.size() << endl;
-  cout << v1.length() << endl;  // error, length() not exist
+  // cout << v1.length() << endl;  // error, length() not exist
 
   // push pop
   cout << v1.size() << endl;  // 5
@@ -28,7 +28,7 @@ void testVec() {
   v1.pop_back();  // the last 6 is removed
   cout << v1.size() << endl;  // 5
   cout << v1.back() << endl; // give the 5, will not remove the last element
-  cout << v1.pop_back() << endl; // error, pop_back() is a void method
+  // cout << v1.pop_back() << endl; // error, pop_back() is a void method
 }
 
 int main() {

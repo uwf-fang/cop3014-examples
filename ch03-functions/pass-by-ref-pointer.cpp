@@ -30,16 +30,15 @@ void printLength(string & ref1) {
   cout << "Length of the string: " << ref1.length() << endl;
 }
 
-int main(int argc, char const *argv[])
-{
+int main() {
   int a = 1;
   int b = 2;
 
   cout << "a = " << a << "; b = " << b <<endl;
-  cout << "swap as pointer\n";
+  cout << "swap by pointers\n";
   swap(&a, &b);  // call pointer version, ptr1 = &a
   cout << "a = " << a << "; b = " << b <<endl;
-  cout << "swap as reference\n";
+  cout << "swap back by references\n";
   swap(a, b);  // call ref version, ref1 = a
   cout << "a = " << a << "; b = " << b <<endl;
 
