@@ -44,7 +44,7 @@ int main() {
   List list2 = list;
   List list3;  // the default constructor will be triggered
 
-  list3 = list;  // default assignment operater will be triggered
+  list3 = list;  // default assignment operater will be triggered, shallow copy
 
   list.print();
   list2.print();
@@ -56,5 +56,7 @@ int main() {
   list2.print();
   list3.print();
 
+  // must add a \n or endl to flush the text to the screen before the crash
+  cout << "Expect memory error after because of the double/triple free of the same data.\n";
   return 0;
 }

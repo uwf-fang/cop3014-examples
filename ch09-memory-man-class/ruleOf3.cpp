@@ -43,7 +43,7 @@ class MyClass {
 
   int at(int index) const { return arr[index]; }
 
-  int getSize() { return size; }
+  int getSize() const { return size; }
 };
 
 MyClass::MyClass(const MyClass& other) {
@@ -52,7 +52,17 @@ MyClass::MyClass(const MyClass& other) {
     for (int i = 0; i < size; i++) arr[i] = other.arr[i];
   }
 
-void print(MyClass obj) {
+// use the reference parameter will avoid object copy
+void print(const MyClass &obj) {
+  // getSize must be const to allow this
+  for (int i = 0; i < obj.getSize(); i++) {
+    cout << obj.at(i) << " ";
+  }
+  cout << endl;
+}
+
+// will trigger implicit assignment during parameter passing
+void print1(MyClass obj) {
   for (int i = 0; i < obj.getSize(); i++) {
     cout << obj.at(i) << " ";
   }

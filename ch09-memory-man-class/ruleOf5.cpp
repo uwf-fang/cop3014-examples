@@ -61,10 +61,19 @@ class MyClass {
 
   int at(int index) const { return arr[index]; }
 
-  int getSize() { return size; }
+  int getSize() const { return size; }
 };
 
-void print(MyClass obj) {
+// use the reference parameter will avoid object copy
+void print(const MyClass &obj) {
+  for (int i = 0; i < obj.getSize(); i++) {
+    cout << obj.at(i) << " ";
+  }
+  cout << endl;
+}
+
+// will trigger implicit assignment during parameter passing
+void print1(MyClass obj) {
   for (int i = 0; i < obj.getSize(); i++) {
     cout << obj.at(i) << " ";
   }
@@ -84,27 +93,30 @@ int main() {
   // clone constructor with deep copy is done on a disposable object, it is a
   // waste because you can reuse the array from the disposable object
   MyClass obj5 = MyClass(10, 1);
+
+  // use of 'new' will create an object in heap
   // the pointer is duplicated, object is not, this is a good way
   MyClass* obj6 = new MyClass(10, 1);
 
-  MyClass obj7;
-  // = operator overloading with deep copy is done on a disposable object, it
-  // is a waste also
-  obj7 = MyClass(10, 1);
-
   // introduce the move constructor and move = operator overloading
   // with the move constructor defined, it will be triggered here
+  cout << "Trigger move constructor\n";
   MyClass obj8 = MyClass(10, 1);
+  print(obj8);
+  cout << "Trigger move assignment operator\n";
   MyClass obj9;
   // with the move = operator overloading defined, it will be triggered here
   obj9 = MyClass(10, 1);
+  print(obj9);
 
   // implicit assignment happened during parameter passing
   // implicitly obj = obj1, triggering the = operator overloading because obj1
   // is not temporary
-  print(obj1);
+  cout << "Trigger copy = during parameter passing\n";
+  print1(obj1);
 
   // implicitly obj = MyClass(10, 10), triggering the move = operator
   // overloading
-  print(MyClass(10, 10));
+  cout << "Trigger move = during parameter passing\n";
+  print1(MyClass(10, 10));
 }
