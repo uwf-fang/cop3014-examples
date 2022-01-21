@@ -10,6 +10,7 @@ class State {
   State();
   State(const string &name);
   string getName() const;
+  void setName(const string &name);
 };
 
 State::State(): name("") {}
@@ -28,7 +29,7 @@ int main() {
   for (int i = 0; i < 100; i++)
     // make a temporary object (rvalue) and assign,
     // = should be overloaded if State class has dynamic date
-    states1[i] = State("Alabama");
+    states1[i] = State();
   cout << states1[0].getName() << endl;
   delete [] states1;
 
@@ -38,7 +39,7 @@ int main() {
 
   states2 = new State *[100];
   for (int i = 0; i < 100; i++)
-    states2[i] = new State("Alabama");
+    states2[i] = new State();
 
   cout << states2[0]->getName() << endl;
 
