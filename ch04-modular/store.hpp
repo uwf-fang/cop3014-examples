@@ -1,21 +1,20 @@
-#ifndef STORE_H
-#define STORE_H
+#ifndef STORE_HPP
+#define STORE_HPP
 
+#include "store-item.hpp"
 #include <string>
 #include <vector>
-#include "store-item.hpp"
 
-class Store
-{
-public:
+class Store {
+ private:
+  std::string storeName;
+  std::vector<StoreItem> items;
+
+ public:
   Store();
-  explicit Store(std::string name);
+  explicit Store(const std::string & name);
   void addItem(StoreItem item);
   void print() const;
-
-private:
-  std::string name;
-  std::vector<StoreItem> items;
 };
 
 #endif
