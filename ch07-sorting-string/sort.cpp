@@ -78,10 +78,6 @@ void testInsertSort() {
 
 
 int main() {
-  int size = 5;
-  int arr[5] = {4, 5, 2, 1, 3};
-
-
   // testMinLoc();
   // testSelectSort();
   testInsertSort();

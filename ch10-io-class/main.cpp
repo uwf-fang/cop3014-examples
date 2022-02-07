@@ -1,8 +1,8 @@
 /**
  * Driver
  */
-#include <iostream>
 #include "student-group.hpp"
+#include <iostream>
 using namespace std;
 
 int main() {
