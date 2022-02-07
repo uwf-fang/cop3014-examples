@@ -1,19 +1,22 @@
 # Step-wise without special variables like $^, $<, etc.
 
-TARGETS = main
+CXX=g++
 CXXFLAGS = -Wall
-RM = rm -f
 
+TARGETS = main
+
+# catch all rule
 all : $(TARGETS)
 
 main : main.o threeintsfcts.o
-	g++ -o main main.o threeintsfcts.o
+	$(CXX) -o main main.o threeintsfcts.o
 
 main.o : main.cpp threeintsfcts.hpp
-	g++ -Wall -c main.cpp
+	$(CXX) $(CXXFLAGS) -c $<
 
 threeintsfcts.o : threeintsfcts.hpp threeintsfcts.cpp
-	g++ -Wall -c threeintsfcts.cpp
+	$(CXX) $(CXXFLAGS) -c $<
 
 clean :
-	$(RM) $(TARGETS) *.o
+	$(RM) -r *.dSYM
+	$(RM) *.o *.gc* $(TARGETS)

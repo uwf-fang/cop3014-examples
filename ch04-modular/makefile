@@ -14,5 +14,5 @@ store-item.o: store-item.cpp store-item.hpp
 	$(CXX) $(FLAGS) -c $^
 
 clean:
-	rm -rf *.dSYM
-	rm -f *.o *.gc* driver
+	$(RM) -r *.dSYM
+	$(RM) *.o *.gc* driver
