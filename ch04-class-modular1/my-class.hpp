@@ -2,10 +2,10 @@
 #define MY_CLASS_HPP
 
 class MyClass {
-  private:  // optional, anything not in the public section is private
+ private:  // optional, anything not in the public section is private
   int value;
   void doubleVal();  // private helper
-  public:
+ public:
   MyClass();  // default constructor
   MyClass(int value);  // parameterized constructor
   int getValue() const;  // accessor/getter

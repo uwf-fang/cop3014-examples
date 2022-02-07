@@ -1,4 +1,4 @@
-#include "myvector.hpp"
+#include "my-vector.hpp"
 #include <iostream>
 using namespace std;
 
@@ -11,5 +11,5 @@ int main() {
 
   delete vecPtr;  // destructor will be called
 
-  return 0;  // destructor for vec will be called upon exiting the program
+  return EXIT_SUCCESS;
 }

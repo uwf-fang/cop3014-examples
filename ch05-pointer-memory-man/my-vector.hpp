@@ -1,5 +1,6 @@
-#ifndef DESCRUCTOR_HPP
-#define DESCRUCTOR_HPP
+#ifndef MY_VECTOR_HPP
+#define MY_VECTOR_HPP
+
 class MyVector {
 private:
   int *array;
