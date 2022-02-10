@@ -128,11 +128,13 @@ void getlineAfterExtractionDemo() {
   // getline(cin, name); // wrong way, will read in an empty string
 
   // may use cin.ignore(); to skip but this may cause problem with different
-  //   line ending
+  //   line ending or when used after getline
 
   // recommended way
-  while (name.empty())
+  do {
     getline(cin, name);
+  } while (name.empty());
+
   cout << "Name is " << name << endl;
 }
 
