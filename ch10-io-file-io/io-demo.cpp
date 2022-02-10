@@ -1,8 +1,9 @@
 // String content parsing using istringstream
-#include <iostream>
-#include <iomanip>
-#include <string>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -13,7 +14,8 @@ using namespace std;
  */
 void textParsingTest();
 // Generate formatted text in a string using ostringstream
-string makeFormattedText(string firstName, string lastName, int age, double height);
+string makeFormattedText(string firstName, string lastName, int age,
+                         double height);
 
 // Read from file until end of file or error
 void readFileDemo();
@@ -23,7 +25,7 @@ void readFileDemo();
 void getlineAfterExtractionDemo();
 
 void textParsingTest() {
-
+  cout << "Text parsing test using istringstream class...\n";
   string text = "John Smith 20 180.1";
   istringstream inSS(text);
 
@@ -31,30 +33,36 @@ void textParsingTest() {
   int age;
   double height;
   inSS >> firstName >> lastName >> age >> height;
+  cout << "Name: " << firstName << " " << lastName << " | Age: " << age
+       << " | height: " << height << endl;
 
-  // When delimiters are not white spaces (space, tab, etc.)
+  // When delimiters are not white spaces (comma, space, tab, etc.)
   text = "John Smith, 20, 180.1";
+
+  // must clear before preceeding
+  inSS.clear();
   inSS.str(text);
 
   string name, ageStr, heightStr;
-  int age;
-  double height;
   getline(inSS, name, ',');
   getline(inSS, ageStr, ',');
-  getline(inSS, heightStr , ',');
+  getline(inSS, heightStr);
   // parse ageStr, heightStr to the right type
   // stoi: string to int
   // stod: string to double
-  age = stoi(ageStr); // not type cast! cannot use static_cast<int>(ageStr)
+  age = stoi(ageStr);  // not type cast! cannot use static_cast<int>(ageStr)
   height = stod(heightStr);
 
+  cout << "Name: " << name << " | Age: " << age << " | height: " << height
+       << endl;
 }
 
-string makeFormattedText(string firstName, string lastName, int age, double height) {
-    ostringstream outSS;
-    outSS << firstName << " " << lastName << " " << age;
-    outSS << " " << fixed << setprecision(1) << height;
-    return outSS.str();
+string makeFormattedText(string firstName, string lastName, int age,
+                         double height) {
+  ostringstream outSS;
+  outSS << firstName << " " << lastName << " " << age;
+  outSS << " " << fixed << setprecision(1) << height;
+  return outSS.str();
 }
 
 void readFileDemo() {
@@ -62,8 +70,8 @@ void readFileDemo() {
   // check open status
   ifstream inFS("numbers.txt");
   if (!inFS.is_open()) {
-      cerr << "Error\n";
-      exit(EXIT_FAILURE);
+    cerr << "Error\n";
+    exit(EXIT_FAILURE);
   }
 
   // alternative method
@@ -75,51 +83,63 @@ void readFileDemo() {
   // === Read numbers from a file until the end of file ===
 
   // 1. Cleanest method
+  cout << "Method 1\n";
   int num;
   while (inFS >> num) {
-      cout << num << endl;
+    cout << num << endl;
   }
 
   // 2. While
-  inFS >> num;
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+  cout << "Method 2\n";
   while (!inFS.eof()) {
-      cout << num << endl;
-      inFS >> num;  // this must be the last line so eof can be checked right after it
+    inFS >> num;
+    cout << num << endl;
   }
 
   // 3. While
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+  cout << "Method 3\n";
   while (!inFS.eof()) {
-      inFS >> num;
-      if (!inFS.fail())
-        cout << num << endl;
+    inFS >> num;
+    if (!inFS.fail()) cout << num << endl;
   }
 
   // 4. While true
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+  cout << "Method 4\n";
   while (true) {
-      inFS >> num;
-      if (inFS.eof())
-          break;
-      cout << num << endl;
+    inFS >> num;
+    cout << num << endl;
+    if (inFS.eof()) break;
   }
 
   // 5. Check fail rather than eof
+  //    EOF flag is set after the last successful read
+  //    fail flag is set after the first failed read
+  //    compare to method 2 to see the difference
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+  cout << "Method 5\n";
   inFS >> num;
   while (!inFS.fail()) {
-      cout << num << endl;
-      inFS >> num;
+    cout << num << endl;
+    inFS >> num;  // must be the last line
   }
 
   // wrong! will display a wrong value in the very last iteration
-  while (!inFS.eof()) {
-      inFS >> num;
-      cout << num << endl;
-  }
+  // while (!inFS.eof()) {
+  //     inFS >> num;
+  //     cout << num << endl;
+  // }
 
+  inFS.close();
 }
 
-
 void getlineAfterExtractionDemo() {
-
   int num1;
   cout << "Give me your age as an int";
   cin >> num1;
@@ -139,6 +159,7 @@ void getlineAfterExtractionDemo() {
 }
 
 int main() {
-
+  textParsingTest();
+  readFileDemo();
   return EXIT_SUCCESS;
 }
