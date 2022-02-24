@@ -1,3 +1,4 @@
+TARGETS=test
 OBJS=test.o my-vector.o
 CXX=g++
 FLAGS=-std=c++11 -Wall
@@ -5,6 +6,7 @@ RM=rm -rf
 
 .PHONY: clean
 
+all: $(TARGETS)
 
 # Target rules
 test: $(OBJS)
