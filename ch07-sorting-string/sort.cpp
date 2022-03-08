@@ -48,12 +48,12 @@ int minLoc(int arr[], int start, int end) {
 
 void selectSort(int arr[], int size) {
   // iterate through the index you are going swap with the minimal
-  for (int index = 0; index <= size - 2; index++) {
+  for (int i = 0; i <= size - 2; i++) {
     // find the location of the minimal value
-    int location = minLoc(arr, index, size - 1);
+    int location = minLoc(arr, i, size - 1);
     // may use swap(arr[index], arr[location])
-    int temp = arr[index];
-    arr[index] = arr[location];
+    int temp = arr[i];
+    arr[i] = arr[location];
     arr[location] = temp;
   }
 }
