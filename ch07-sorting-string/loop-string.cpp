@@ -1,6 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <cassert>
 using namespace std;
 
 // check if a string consists of all digits
@@ -75,17 +76,51 @@ int findSubStr(string text, string sub) {
   int offset = 0;
 
   // (size1 - size2) * (size2 - 1)
-  for (int start = 0; start <= size1 - size2; start++) {
+  for (int start = 0; start <= size1 - size2; start++)
     if (text.at(start) == sub.at(0)) {
       for (offset = 1; offset < size2; offset++)
         if (text.at(start + offset) != sub.at(offset)) break;
       if (offset == size2)  // matched
         return start;
     }
-  }
   return -1;
 }
 
+bool isPalindrome(string text, int start, int end);
+
+int findLengthOfLongestPalindrome(string text) {
+  for (int i = 0; i < text.length() - 1; i++) {
+    for (int j = text.length() - 1; j > i; j--)
+      if (isPalindrome(text, i, j)) {
+        // cout << text << " " << i << " " << j << endl;
+        return (j - i + 1);
+      }
+  }
+  return 1;
+}
+
+bool isPalindrome(string text, int start, int end) {
+  for (int i = 0; i <= (end - start) / 2; i++)
+    if (text.at(start + i) != text.at(end - i))
+      return false;
+  return true;
+}
+
+void testLongestPalindrome() {
+  string text = "abcdedcba";
+  assert(findLengthOfLongestPalindrome(text) == text.length());
+  text = "abc";
+  // cout << findLengthOfLongestPalindrome(text) << endl;
+  assert(findLengthOfLongestPalindrome(text) == 1);
+
+}
+void testIsPalindrome() {
+  string text = "abcdedcba";
+  assert(isPalindrome(text, 3, 5));
+  assert(!isPalindrome(text, 2, 5));
+  text = "abc";
+  assert(!isPalindrome(text, 0, 1));
+}
 void testSubStringSearch() {
   cout << "Testing sub-string search" << endl;
   string str1 = "abcde";
@@ -105,6 +140,8 @@ void testIsReverse() {
 
 int main() {
   testSubStringSearch();
-  testIsReverse();
+  // testIsReverse();
+  // testIsPalindrome();
+  // testLongestPalindrome();
   return EXIT_SUCCESS;
 }

@@ -68,24 +68,26 @@ void testMinLoc() {
 
 void testSelectSort() {
   int size = 5;
-  int arr[5] = {4, 5, 2, 1, 3};
+  int *arr = makeRandArray(size, 0, 10);
 
-  cout << "Before Sorting: ";
+  cout << "Testing selection sort\n";
   printAll(arr, size);
   selectSort(arr, size);
-  cout << "After Selection Sort: ";
-  printAll(arr, size);
+  assert(isAscending(arr, size));
+  cout << "Tests passed\n";
+  delete [] arr;
 }
 
 void testInsertSort() {
   int size = 5;
-  int arr[5] = {4, 5, 2, 1, 3};
+  int *arr = makeRandArray(size, 0, 10);
 
-  cout << "Before Sorting: ";
+  cout << "Testing insertion sort\n";
   printAll(arr, size);
   insertSort(arr, size);
-  cout << "After Insertion Sort: ";
-  printAll(arr, size);
+  assert(isAscending(arr, size));
+  cout << "Tests passed\n";
+  delete [] arr;
 }
 
 

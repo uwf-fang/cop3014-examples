@@ -21,6 +21,7 @@ void printAll(int arr[], int size) {
     cout << arr[i] << " ";
   cout << endl;
 }
+
 int *makeRandArray(int size, int low, int high) {
   int *res = new int[size];
   for (int i = 0; i < size; i++)
