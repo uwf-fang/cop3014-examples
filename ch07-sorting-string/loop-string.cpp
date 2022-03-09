@@ -43,8 +43,10 @@ int findLastInString3(string word, char toSearch) {
   int size = word.length();
   int i;
   int position;
-  for (i = 0; i < size; i++) position = size - 1 - i;
-  if (word.at(position) == toSearch) return i;
+  for (i = 0; i < size; i++) {
+    position = size - 1 - i;
+    if (word.at(position) == toSearch) return i;
+  }
   return -1;
 }
 
@@ -85,16 +87,20 @@ int findSubStr(string text, string sub) {
 }
 
 void testSubStringSearch() {
+  cout << "Testing sub-string search" << endl;
   string str1 = "abcde";
   assert(findSubStr(str1, "cd") == 2);
   assert(findSubStr(str1, "abcde") == 0);
   assert(findSubStr(str1, "dd") == -1);
+  cout << "All tests passed" << endl;
 }
 
 void testIsReverse() {
+  cout << "Testing isReverse" << endl;
   string str1 = "abcde";
   string str2 = "edcba";
   assert(isReverse(str1, str2));
+  cout << "All tests passed" << endl;
 }
 
 int main() {

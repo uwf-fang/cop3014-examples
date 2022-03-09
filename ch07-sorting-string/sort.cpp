@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -5,9 +6,6 @@
 #include <cassert>
 
 using namespace std;
-
-// Utilities
-void printAll(int arr[], int size);
 
 // sorting functions
 void insertSort(int arr[], int size);
@@ -56,12 +54,6 @@ void selectSort(int arr[], int size) {
     arr[i] = arr[location];
     arr[location] = temp;
   }
-}
-
-void printAll(int arr[], int size) {
-  for (int i = 0; i < size; i++)
-    cout << arr[i] << " ";
-  cout << endl;
 }
 
 void testMinLoc() {
