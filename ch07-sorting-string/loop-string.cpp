@@ -86,7 +86,6 @@ int findSubStr(string text, string sub) {
   return -1;
 }
 
-bool isPalindrome(string text, int start, int end);
 
 int findLengthOfLongestPalindrome(string text) {
   for (int i = 0; i < text.length() - 1; i++) {
