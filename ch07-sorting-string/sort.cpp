@@ -17,7 +17,7 @@ int argMin(int arr[], int start, int end);
 void selectionSort(int arr[], int size);
 
 // testing functions
-void testMinLoc();
+void testArgMin();
 void testInsertSort();
 void testSelectSort();
 
@@ -58,7 +58,7 @@ void selectionSort(int arr[], int size) {
   }
 }
 
-void testMinLoc() {
+void testArgMin() {
   int size = 5;
   int *arr = new int[size]{4, 5, 2, 1, 3};
 
@@ -74,6 +74,7 @@ void testSelectSort() {
 
   cout << "Testing selection sort\n";
   printAll(arr, size);
+  assert(!isAscending(arr, size));
   selectionSort(arr, size);
   assert(isAscending(arr, size));
   cout << "Tests passed\n";
@@ -86,6 +87,7 @@ void testInsertSort() {
 
   cout << "Testing insertion sort\n";
   printAll(arr, size);
+  assert(!isAscending(arr, size));
   insertionSort(arr, size);
   assert(isAscending(arr, size));
   cout << "Tests passed\n";
@@ -94,7 +96,7 @@ void testInsertSort() {
 
 
 int main() {
-  testMinLoc();
+  testArgMin();
   testSelectSort();
   testInsertSort();
   return EXIT_SUCCESS;
