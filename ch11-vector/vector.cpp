@@ -13,9 +13,13 @@ void testVec() {
   vector<int> v4(5, 10); // 5 number 10s
   vector<int> v5(v1); // duplicate v1
 
+  // Assignment
+  v1 = {1, 3, 5};
+  v1 = v2;
+
   // at() vs []
   cout << v1.at(6) << endl;  // out of range error
-  cout << v1[6] << endl;  // will run! Dangerous!
+  cout << v1[6] << endl;  // will run! Dangerous! Memory error!
 
   // get size
   cout << v1.size() << endl;
