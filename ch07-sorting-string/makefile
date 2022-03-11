@@ -1,5 +1,5 @@
 CXX = g++
-TARGETS = loop-string sort string
+TARGETS = string-algorithm sort string-basics
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRC:%.cpp=%.o)
 UTILS = util.o
