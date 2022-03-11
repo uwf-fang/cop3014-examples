@@ -53,8 +53,8 @@ int findLastInString3(string word, char toSearch) {
 
 // how many layer loop?
 bool isIdenticalString(string str1, string str2) {
-  if (str1.size() != str1.size()) return false;
-  int size = str1.size();
+  if (str1.length() != str2.length()) return false;
+  int size = str1.length();
   for (int i = 0; i < size; i++)
     if (str1.at(i) != str2.at(i)) return false;
   return true;
@@ -63,8 +63,8 @@ bool isIdenticalString(string str1, string str2) {
 // how many layer loop?
 // only need to modify one line from the above function
 bool isReverse(string str1, string str2) {
-  if (str1.size() != str1.size()) return false;
-  int size = str1.size();
+  if (str1.length() != str1.length()) return false;
+  int size = str1.length();
   for (int i = 0; i < size; i++)
     if (str1.at(i) != str2.at(size - 1 - i)) return false;
   return true;
