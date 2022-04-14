@@ -9,42 +9,31 @@
 
 using std::string;
 
-const int MAX_COURSES = 5;
+constexpr int MAX_COURSES = 5;  // constexpr is similar to const, since c++11
 
 class Student {
   string name;
   int age;
   string courses[MAX_COURSES];
-  bool empty = true;
+  int count;
  public:
-  // default contructor, create an empty object
-  // must followed by a call of the parse function to add contents
   Student();
-  // create a student object from a text with all info in it
-  explicit Student(const string &all_info_string);
-
-  // parse information of a student from a text with all info in it
-  void parse(const string &all_info_string);
-
+  void parse(const string &infoString);
   // Generate string representation of a student
   string toStr();
-
-  bool isEmpty();
 };
 
 class StudentGroup {
+  int capacity;  // must be declared before students so it will be initialized first in the constructor
   Student *students;  // dynamic array
-  int size = 0;
-  int capacity = 40;
-  bool loaded = false;
-  bool saved = false;
+  int size;
+  bool loaded;
+  bool saved;
  public:
 
   StudentGroup();
-  explicit StudentGroup(const string &filePath);
   ~StudentGroup();
   bool loadFile(const string &filePath);
-  bool isLoaded();
   bool saveFile(string filePath);
 };
 

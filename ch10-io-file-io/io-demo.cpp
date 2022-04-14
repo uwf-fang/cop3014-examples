@@ -82,52 +82,50 @@ void readFileDemo() {
 
   // === Read numbers from a file until the end of file ===
 
-  // 1. Cleanest method
-  cout << "Method 1\n";
   int num;
+
+  // 1. Cleanest method, stop on fail
+  cout << "Method 1\n";
   while (inFS >> num) {
     cout << num << endl;
   }
 
-  // 2. While
+  // reset the read position
+  // must call clear first before c++11
+  // fstream::clear() clears the flag bits
   inFS.clear();
   inFS.seekg(0);  // rewind to the beginnign of the file
+
+  // 2. While not eof, stop on fail
   cout << "Method 2\n";
-  while (!inFS.eof()) {
-    inFS >> num;
-    cout << num << endl;
-  }
-
-  // 3. While
-  inFS.clear();
-  inFS.seekg(0);  // rewind to the beginnign of the file
-  cout << "Method 3\n";
-  while (!inFS.eof()) {
-    inFS >> num;
-    if (!inFS.fail()) cout << num << endl;
-  }
-
-  // 4. While true
-  inFS.clear();
-  inFS.seekg(0);  // rewind to the beginnign of the file
-  cout << "Method 4\n";
-  while (true) {
-    inFS >> num;
-    cout << num << endl;
-    if (inFS.eof()) break;
-  }
-
-  // 5. Check fail rather than eof
-  //    EOF flag is set after the last successful read
-  //    fail flag is set after the first failed read
-  //    compare to method 2 to see the difference
-  inFS.clear();
-  inFS.seekg(0);  // rewind to the beginnign of the file
-  cout << "Method 5\n";
   inFS >> num;
   while (!inFS.fail()) {
     cout << num << endl;
-    inFS >> num;  // must be the last line
+    inFS >> num;
+  }
+
+  // reset the read position
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+
+  // 3. While, stop on fail
+  cout << "Method 3\n";
+  while (!inFS.eof() && inFS.good()) {
+    inFS >> num;
+    if (!inFS.fail())
+      cout << num << endl;
+  }
+
+  // reset the read position
+  inFS.clear();
+  inFS.seekg(0);  // rewind to the beginnign of the file
+
+  // 4. While true, stop on fail
+  cout << "Method 4\n";
+  while (true) {
+    inFS >> num;
+    if (inFS.fail()) break;
+    cout << num << endl;
   }
 
   // wrong! will display a wrong value in the very last iteration

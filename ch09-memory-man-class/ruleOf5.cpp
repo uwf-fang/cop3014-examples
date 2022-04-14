@@ -59,7 +59,7 @@ class MyClass {
     return *this;
   }
 
-  int at(int index) const { return arr[index]; }
+  int &at(int index) const { return arr[index]; }
 
   int getSize() const { return size; }
 };
@@ -90,33 +90,26 @@ int main() {
 
   // Why rule of 5
   // limitation of rule of 3
-  // clone constructor with deep copy is done on a disposable object, it is a
-  // waste because you can reuse the array from the disposable object
-  MyClass obj5 = MyClass(10, 1);
-
-  // use of 'new' will create an object in heap
-  // the pointer is duplicated, object is not, this is a good way
-  MyClass* obj6 = new MyClass(10, 1);
+  //  clone constructor with deep copy is done on a disposable object, it is a
+  //  waste because you can reuse the array from the disposable object
 
   // introduce the move constructor and move = operator overloading
-  // with the move constructor defined, it will be triggered here
   cout << "Trigger move constructor\n";
   MyClass obj8 = MyClass(10, 1);
   print(obj8);
   cout << "Trigger move assignment operator\n";
   MyClass obj9;
-  // with the move = operator overloading defined, it will be triggered here
   obj9 = MyClass(10, 1);
   print(obj9);
 
   // implicit assignment happened during parameter passing
   // implicitly obj = obj1, triggering the = operator overloading because obj1
-  // is not temporary
+  //  is not temporary
   cout << "Trigger copy = during parameter passing\n";
   print1(obj1);
 
   // implicitly obj = MyClass(10, 10), triggering the move = operator
-  // overloading
+  //  overloading
   cout << "Trigger move = during parameter passing\n";
   print1(MyClass(10, 10));
 }

@@ -9,34 +9,28 @@
 
 using namespace std;
 
-Student::Student() = default;
+// default constructor
+// string do not need initial value, default to ""
+Student::Student(): age(0), count(0) {}
 
-Student::Student(const string &all_info_string) {
-  parse(all_info_string);
-}
-
-// text formatted like "John Smith, 22, COP2334 COP3014 CIS5099
-void Student::parse(const string &all_info_string) {
-  istringstream inSS(all_info_string);
-  string age_str, courses_str, course;
+// parse text formatted like "John Smith, 22, COP2334 COP3014 CIS5099
+void Student::parse(const string &infoString) {
+  istringstream inSS(infoString);
+  string ageStr, course;
+  int i;
 
   getline(inSS, name, ',');
-  getline(inSS, age_str, ',');
-  age = stoi(age_str);
-  getline(inSS, courses_str);
-  inSS.clear();
-  inSS.str(courses_str);
-  int i = 0;
-  while (inSS >> course) {
+  getline(inSS, ageStr, ',');
+  age = stoi(ageStr);
+  for (i = 0; i < MAX_COURSES; i++) {
+    inSS >> course;
+    if (inSS.fail()) break;
     courses[i] = course;
-    i++;
   }
-  empty = false;
+  count = i;
 }
 
 string Student::toStr() {
-  if (isEmpty())
-    return "";
   ostringstream outSS;
   outSS << name << ',' << age << ',';
   for (int i = 0; i < MAX_COURSES && !courses[i].empty(); i++) {
@@ -45,18 +39,7 @@ string Student::toStr() {
   return outSS.str();
 }
 
-bool Student::isEmpty() {
-  return empty;
-}
-
-StudentGroup::StudentGroup() {
-  students = new Student[capacity];
-}
-
-StudentGroup::StudentGroup(const string &filePath) {
-  students = new Student[capacity];
-  loadFile(filePath);
-}
+StudentGroup::StudentGroup(): capacity(40), students(new Student[capacity]) {}
 
 bool StudentGroup::loadFile(const string &filePath) {
   ifstream inFile(filePath);
@@ -69,8 +52,10 @@ bool StudentGroup::loadFile(const string &filePath) {
   // cannot add more than capacity of students
   for (i = 0; i < capacity; i++) {
     getline(inFile, line);
-    if (inFile.fail() || line.empty())
+    if (inFile.fail())
       break;
+    if (line.empty()) // skip empty lines
+      continue;
     students[i].parse(line);
   }
   size = i;
@@ -81,11 +66,7 @@ bool StudentGroup::loadFile(const string &filePath) {
 }
 
 StudentGroup::~StudentGroup() {
-  delete [] students;
-}
-
-bool StudentGroup::isLoaded() {
-  return loaded;
+  delete [] students;  // students will never be nullptr
 }
 
 bool StudentGroup::saveFile(string filePath) {
@@ -95,11 +76,10 @@ bool StudentGroup::saveFile(string filePath) {
     return false;
   }
   int i;
-  // cannot add more than capacity of students
   for (i = 0; i < size; i++) {
     outFile << students[i].toStr() << endl;
   }
-//  cout << "Saved " << i << " lines\n";
   outFile.close();
   saved = true;
+  return saved;
 }
