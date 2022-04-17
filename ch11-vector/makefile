@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++11 -Wall
+CXXFLAGS=-std=c++11 -Wall -Wno-sign-compare -g
 HEADERS=../utility/testing-helper.hpp
 
 test-vector: vector.o
