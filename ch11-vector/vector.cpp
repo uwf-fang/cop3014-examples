@@ -62,7 +62,7 @@ void absolute(vector<int> &v) {
 }
 
 // filter algorithm, out-of-place
-vector<int> positiveOnly(vector<int> v) {
+vector<int> positiveOnly(const vector<int> &v) {
   vector<int> result;
   for (int i = 0; i < v.size(); i++)
     if (v.at(i) > 0)
