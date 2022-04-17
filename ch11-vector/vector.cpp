@@ -1,15 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include "../utility/testing-helper.hpp"
 
 using namespace std;
 
 double avg(const vector<int> &v);
 void absolute(vector<int> &v);
-vector<int> positiveOnly(vector<int> v);
+vector<int> positiveOnly(const vector<int> &v);
 void testVecBasics();
 void testAlgorithms();
 
+// testing
 void testVecBasics() {
   // vector v1; invalid, vector is not a type, vector<int> is
 
@@ -48,10 +50,21 @@ void testVecBasics() {
   cout << "Tests passed\n";
 }
 
+void testAlgorithms() {
+  cout << "Start testing vector algorithms...\n";
+  vector<int> v1{1, -5, 2, 5, -6, 9};
+  vector<int> v2(v1);
+  assert(isClose(avg(v1), 1.0));
+  absolute(v1);
+  assert(allNotNegative(v1));
+  assert((positiveOnly(v2) == vector<int>{1, 2, 5, 9}));
+  cout << "Tests passed\n";
+}
+
 // aggregate algorithms
 double avg(const vector<int> &v) {
-  int sum;
-  for (int i = 0; i < v.size(); i++) sum += v.at(0);
+  int sum = 0;
+  for (int i = 0; i < v.size(); i++) sum += v.at(i);
   return static_cast<double>(sum) / v.size();
 }
 
@@ -70,9 +83,8 @@ vector<int> positiveOnly(const vector<int> &v) {
   return result;
 }
 
-
 int main() {
   testVecBasics();
-
+  testAlgorithms();
   return EXIT_SUCCESS;
 }
