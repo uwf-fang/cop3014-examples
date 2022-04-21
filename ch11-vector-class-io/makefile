@@ -1,14 +1,11 @@
-$(CXX)=g++
+CXX=g++
 CXXFLAGS=-std=c++11 -Wall
 
-main: main.o student-group.o
+grades-app: grades-app.o grades.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-main.o: main.cpp student-group.hpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-student-group.o: student-group.cpp student-group.hpp
+%.o: %.cpp grades.hpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf main *.o
+	$(RM) grades-app *.o
