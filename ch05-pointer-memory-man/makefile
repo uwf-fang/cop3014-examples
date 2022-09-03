@@ -1,7 +1,7 @@
 TARGETS=test
 OBJS=test.o my-vector.o
 CXX=g++
-FLAGS=-std=c++11 -Wall
+FLAGS=-std=c++14 -Wall
 RM=rm -rf
 
 .PHONY: clean

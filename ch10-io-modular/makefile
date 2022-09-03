@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++11 -Wall
+CXXFLAGS=-std=c++14 -Wall
 
 main: main.o student-group.o
 	$(CXX) $(CXXFLAGS) -o $@ $^

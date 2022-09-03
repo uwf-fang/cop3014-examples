@@ -1,5 +1,5 @@
 CXX = g++
-FLAGS = -Wall -std=c++11 -g
+FLAGS = -Wall -std=c++14 -g
 
 driver: driver.o store.o store-item.o
 	$(CXX) -o $@ $^
