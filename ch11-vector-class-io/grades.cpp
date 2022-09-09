@@ -50,7 +50,7 @@ bool Grades::save(string path) {
     cerr << "Cannot open file" << endl;
     return false;
   }
-  for (int i = 0; i < grades.size(); i++)
+  for (int i = 0; i < grades.size(); ++i)
     outFS << grades.at(i).toStr() << endl;
 
   outFS.close();

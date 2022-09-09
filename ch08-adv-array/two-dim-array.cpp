@@ -23,8 +23,8 @@ int **rotateCW90(int **matrix, int rows, int cols);
 //////////////////
 
 void printMatrix(int **matrix, int rows, int cols) {
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++)
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < cols; ++j)
       cout << setw(2) << matrix[i][j] << " ";
     cout << endl;
   }
@@ -32,46 +32,46 @@ void printMatrix(int **matrix, int rows, int cols) {
 
 int **makeSampleMatrix(int rows, int cols) {
   int **matrix = new int *[rows];
-  for (int i = 0; i < rows; i++) {
+  for (int i = 0; i < rows; ++i) {
     matrix[i] = new int[cols];
-    for (int j = 0; j < cols; j++)
+    for (int j = 0; j < cols; ++j)
       matrix[i][j] = i * rows + j + 1;
   }
   return matrix;
 }
 
 void cleanMatrix(int **matrix, int rows) {
-  for (int i = 0; i < rows; i++)
+  for (int i = 0; i < rows; ++i)
     delete [] matrix[i];
   delete [] matrix;
 }
 
 void transposeSquare(int **matrix, int rows, int cols) {
-  for (int i = 0; i < rows - 1; i++)
-    for (int j = i + 1; j < cols; j++)
+  for (int i = 0; i < rows - 1; ++i)
+    for (int j = i + 1; j < cols; ++j)
       swap(matrix[i][j], matrix[j][i]);
 }
 
 void flipH(int **matrix, int rows, int cols) {
-  for (int i = 0; i < rows; i++)
-    for (int j = 0; j < cols / 2; j++)
+  for (int i = 0; i < rows; ++i)
+    for (int j = 0; j < cols / 2; ++j)
       swap(matrix[i][j], matrix[i][cols - 1 - j]);
 }
 
 void flipV(int **matrix, int rows, int cols) {
-  for (int j = 0; j < cols; j++)
-    for (int i = 0; i < rows / 2; i++)
+  for (int j = 0; j < cols; ++j)
+    for (int i = 0; i < rows / 2; ++i)
       swap(matrix[i][j], matrix[rows - 1 - i][j]);
 }
 
 int **transpose(int **matrix, int rows, int cols) {
   int **result;
   result = new int *[cols];
-  for (int i = 0; i < cols; i++)
+  for (int i = 0; i < cols; ++i)
     result[i] = new int[rows];
 
-  for (int i = 0; i < rows; i++)
-    for (int j = 0; j < cols; j++)
+  for (int i = 0; i < rows; ++i)
+    for (int j = 0; j < cols; ++j)
       result[j][i] = matrix[i][j];
 
   return result;
@@ -80,11 +80,11 @@ int **transpose(int **matrix, int rows, int cols) {
 int ** rotateCW90(int **matrix, int rows, int cols) {
   int **result;
   result = new int *[cols];
-  for (int i = 0; i < cols; i++)
+  for (int i = 0; i < cols; ++i)
     result[i] = new int[rows];
 
-  for (int i = 0; i < rows; i++)
-    for (int j = 0; j < cols; j++)
+  for (int i = 0; i < rows; ++i)
+    for (int j = 0; j < cols; ++j)
       result[j][rows - 1 - i] = matrix[i][j];
 
   return result;

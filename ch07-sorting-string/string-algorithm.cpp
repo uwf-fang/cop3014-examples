@@ -7,7 +7,7 @@ using namespace std;
 // check if a string consists of all digits
 bool isAllDigit(string userInput) {
   int size = userInput.length();
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
     if (userInput.at(i) < '0' || userInput.at(i) > '9') return false;
   return true;
 }
@@ -15,7 +15,7 @@ bool isAllDigit(string userInput) {
 // find first occurrance of a char in a string
 // scan until a match if found
 int findFirstInString(string word, char toSearch) {
-  for (int i = 0; i < word.length(); i++)
+  for (int i = 0; i < word.length(); ++i)
     if (word.at(i) == toSearch) return i;
   return -1;
 }
@@ -24,7 +24,7 @@ int findFirstInString(string word, char toSearch) {
 // always scan all elements
 int findLastInString1(string word, char toSearch) {
   int result = -1;
-  for (int i = 0; i < word.length(); i++)
+  for (int i = 0; i < word.length(); ++i)
     if (word.at(i) == toSearch) result = i;
   return result;
 }
@@ -44,7 +44,7 @@ int findLastInString3(string word, char toSearch) {
   int size = word.length();
   int i;
   int position;
-  for (i = 0; i < size; i++) {
+  for (i = 0; i < size; ++i) {
     position = size - 1 - i;
     if (word.at(position) == toSearch) return i;
   }
@@ -55,7 +55,7 @@ int findLastInString3(string word, char toSearch) {
 bool isIdenticalString(string str1, string str2) {
   if (str1.length() != str2.length()) return false;
   int size = str1.length();
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
     if (str1.at(i) != str2.at(i)) return false;
   return true;
 }
@@ -65,7 +65,7 @@ bool isIdenticalString(string str1, string str2) {
 bool isReverse(string str1, string str2) {
   if (str1.length() != str1.length()) return false;
   int size = str1.length();
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
     if (str1.at(i) != str2.at(size - 1 - i)) return false;
   return true;
 }
@@ -88,7 +88,7 @@ int findSubStr(string text, string sub) {
 
 
 int findLengthOfLongestPalindrome(string text) {
-  for (int i = 0; i < text.length() - 1; i++) {
+  for (int i = 0; i < text.length() - 1; ++i) {
     for (int j = text.length() - 1; j > i; j--)
       if (isPalindrome(text, i, j)) {
         // cout << text << " " << i << " " << j << endl;
@@ -99,7 +99,7 @@ int findLengthOfLongestPalindrome(string text) {
 }
 
 bool isPalindrome(string text, int start, int end) {
-  for (int i = 0; i <= (end - start) / 2; i++)
+  for (int i = 0; i <= (end - start) / 2; ++i)
     if (text.at(start + i) != text.at(end - i))
       return false;
   return true;

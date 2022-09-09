@@ -22,7 +22,7 @@ void Student::parse(const string &infoString) {
   getline(inSS, name, ',');
   getline(inSS, ageStr, ',');
   age = stoi(ageStr);
-  for (i = 0; i < MAX_COURSES; i++) {
+  for (i = 0; i < MAX_COURSES; ++i) {
     inSS >> course;
     if (inSS.fail()) break;
     courses[i] = course;
@@ -33,7 +33,7 @@ void Student::parse(const string &infoString) {
 string Student::toStr() {
   ostringstream outSS;
   outSS << name << ',' << age << ',';
-  for (int i = 0; i < MAX_COURSES && !courses[i].empty(); i++) {
+  for (int i = 0; i < MAX_COURSES && !courses[i].empty(); ++i) {
     outSS << courses[i] << ' ';  // will have an extra space at the end of line
   }
   return outSS.str();
@@ -50,7 +50,7 @@ bool StudentGroup::loadFile(const string &filePath) {
   string line;
   int i;
   // cannot add more than capacity of students
-  for (i = 0; i < capacity; i++) {
+  for (i = 0; i < capacity; ++i) {
     getline(inFile, line);
     if (inFile.fail())
       break;
@@ -76,7 +76,7 @@ bool StudentGroup::saveFile(string filePath) {
     return false;
   }
   int i;
-  for (i = 0; i < size; i++) {
+  for (i = 0; i < size; ++i) {
     outFile << students[i].toStr() << endl;
   }
   outFile.close();

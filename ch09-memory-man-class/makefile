@@ -10,4 +10,4 @@ test-shallow: shallow-copy.cpp
 	g++ -std=c++14 -o $@ $<
 
 clean:
-	rm -f test3 test5 test-shallow
+	rm -rf test3 test5 test-shallow

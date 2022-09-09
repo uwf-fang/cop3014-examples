@@ -64,20 +64,20 @@ void testAlgorithms() {
 // aggregate algorithms
 double avg(const vector<int> &v) {
   int sum = 0;
-  for (int i = 0; i < v.size(); i++) sum += v.at(i);
+  for (int i = 0; i < v.size(); ++i) sum += v.at(i);
   return static_cast<double>(sum) / v.size();
 }
 
 // map algorithm, in-place
 void absolute(vector<int> &v) {
-  for (int i = 0; i < v.size(); i++)
+  for (int i = 0; i < v.size(); ++i)
     if (v.at(i) < 0) v.at(i) *= -1;  // v.at(i) = -v.at(i);
 }
 
 // filter algorithm, out-of-place
 vector<int> positiveOnly(const vector<int> &v) {
   vector<int> result;
-  for (int i = 0; i < v.size(); i++)
+  for (int i = 0; i < v.size(); ++i)
     if (v.at(i) > 0)
       result.push_back(v.at(i));
   return result;

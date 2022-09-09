@@ -22,7 +22,7 @@ List::List() {
 List::List(int value, int repeat) {
   size = repeat;
   array = new int[size];
-  for (int i = 0; i < repeat; i++)
+  for (int i = 0; i < repeat; ++i)
     array[i] = value;
 }
 
@@ -33,7 +33,7 @@ void List::setValue(int index, int value) {
 }
 
 void List::print() {
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
     cout << array[i] << " ";
   cout << endl;
 }

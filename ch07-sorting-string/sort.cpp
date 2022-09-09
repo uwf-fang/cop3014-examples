@@ -22,7 +22,7 @@ void testInsertSort();
 void testSelectSort();
 
 void insertionSort(int arr[], int size) {
-  for (int i = 1; i < size; i++)
+  for (int i = 1; i < size; ++i)
     for (int j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
       // may use swap(arr[j], arr[j - 1]);
       int temp = arr[j];
@@ -38,7 +38,7 @@ int argMin(int arr[], int start, int end) {
 
   int currMin = INT_MAX;
   int location = 0;
-  for (int i = start; i <= end; i++)
+  for (int i = start; i <= end; ++i)
     if (arr[i] < currMin) {
       currMin = arr[i];
       location = i;
@@ -48,7 +48,7 @@ int argMin(int arr[], int start, int end) {
 
 void selectionSort(int arr[], int size) {
   // iterate through the index you are going swap with the minimum value
-  for (int i = 0; i <= size - 2; i++) {
+  for (int i = 0; i <= size - 2; ++i) {
     // find the location of the minimal value
     int location = argMin(arr, i, size - 1);
     // may use swap(arr[i], arr[location])

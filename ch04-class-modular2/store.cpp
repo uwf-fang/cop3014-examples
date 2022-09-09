@@ -14,7 +14,7 @@ void Store::addItem(StoreItem item) {
 void Store::print() const {
   cout << "Store: " << storeName << endl;
   cout << "----------------\n";
-  for (int i = 0; i < items.size(); i++)
+  for (int i = 0; i < items.size(); ++i)
     items.at(i).print();
 }
 

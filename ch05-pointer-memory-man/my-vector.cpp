@@ -4,7 +4,7 @@ MyVector::MyVector() {
   arrSize = 0;
   capacity = 10;
   array = new int[capacity];
-  for (int i = 0; i < arrSize; i++)
+  for (int i = 0; i < arrSize; ++i)
     array[i] = 0;
 }
 
@@ -12,7 +12,7 @@ MyVector::MyVector(int size) {
   arrSize = size;
   capacity = 2 * size;
   array = new int[capacity]; // memory allocation
-  for (int i = 0; i < arrSize; i++)
+  for (int i = 0; i < arrSize; ++i)
     array[i] = 0;
 }
 
@@ -39,7 +39,7 @@ void MyVector::push_back(int value) {
 void MyVector::reAllocate() {
   capacity *= 2;
   int *newArray = new int[capacity];
-  for (int i = 0; i < arrSize; i++)
+  for (int i = 0; i < arrSize; ++i)
     newArray[i] = array[i];
   delete [] array;
   array = newArray;
@@ -53,7 +53,7 @@ int MyVector::pop_back() {
 void MyVector::remove(int index) {
   if (index < 0 || index >= arrSize)
     throw "Index out of range";
-  for (int i = index; i < arrSize - 1; i++)
+  for (int i = index; i < arrSize - 1; ++i)
     array[i] = array[i + 1];
   arrSize--;
 }
