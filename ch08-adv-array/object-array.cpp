@@ -31,9 +31,10 @@ int main() {
     // = should be overloaded if State class has dynamic date
     states1[i] = State();
   cout << states1[0].getName() << endl;
+
   delete [] states1;
 
-  // expect 1d array of pointers to the state object
+  // Expect 1d array of pointers to the state object
   // this syntax can be also used as 2d array of objects
   State **states2;
 
@@ -44,6 +45,6 @@ int main() {
   cout << states2[0]->getName() << endl;
 
   for (int i = 0; i < 100; ++i)
-    delete states2[i];
+    delete states2[i];  // no []!
   delete [] states2;
 }
