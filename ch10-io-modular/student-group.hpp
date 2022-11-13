@@ -1,9 +1,13 @@
 /**
- * Ian Fang on 10/25/21.
+ * @file student-group.hpp
+ * @author Ian Fang
+ * @brief Declarations of Student and StudentGroup classes
+ *
+ * @copyright Copyright (c) 2022
+ *
  */
-
-#ifndef COP3014_2021F_FILE_IO_DEMO_STUDENT_GROUP_HPP_
-#define COP3014_2021F_FILE_IO_DEMO_STUDENT_GROUP_HPP_
+#ifndef STUDENT_GROUP_HPP
+#define STUDENT_GROUP_HPP
 
 #include <string>
 
@@ -30,12 +34,10 @@ class StudentGroup {
   bool loaded;
   bool saved;
  public:
-
   StudentGroup();
   ~StudentGroup();
   bool loadFile(const string &filePath);
   bool saveFile(string filePath);
 };
 
-
-#endif //COP3014_2021F_FILE_IO_DEMO_STUDENT_GROUP_HPP_
+#endif

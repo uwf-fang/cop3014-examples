@@ -1,7 +1,11 @@
 /**
- * Implementation of Student and StudentGroup classes
+ * @file student-group.cpp
+ * @author Ian Fang
+ * @brief Implementation of Student and StudentGroup classes
+ *
+ * @copyright Copyright (c) 2022
+ *
  */
-
 #include "student-group.hpp"
 #include <sstream>
 #include <fstream>
@@ -39,6 +43,7 @@ string Student::toStr() {
   return outSS.str();
 }
 
+// 40 students at most
 StudentGroup::StudentGroup(): capacity(40), students(new Student[capacity]) {}
 
 bool StudentGroup::loadFile(const string &filePath) {
@@ -50,6 +55,7 @@ bool StudentGroup::loadFile(const string &filePath) {
   string line;
   int i;
   // cannot add more than capacity of students
+  // use a while(getline(inFile, line)) {} loop if there is no capacity limit
   for (i = 0; i < capacity; ++i) {
     getline(inFile, line);
     if (inFile.fail())

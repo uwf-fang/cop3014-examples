@@ -1,1 +1,0 @@
-A sample modular project with file input/output.
