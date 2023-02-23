@@ -33,7 +33,7 @@ int findLastInString1(string word, char toSearch) {
 // search backwards
 int findLastInString2(string word, char toSearch) {
   // memorize this pattern!
-  for (int i = word.length() - 1; i >= 0; i--)
+  for (int i = word.length() - 1; i >= 0; --i)
     if (word.at(i) == toSearch) return i;
   return -1;
 }
@@ -76,9 +76,9 @@ int findSubStr(string text, string sub) {
   int offset = 0;
 
   // (size1 - size2) * (size2 - 1)
-  for (int start = 0; start <= size1 - size2; start++)
+  for (int start = 0; start <= size1 - size2; ++start)
     if (text.at(start) == sub.at(0)) {
-      for (offset = 1; offset < size2; offset++)
+      for (offset = 1; offset < size2; ++offset)
         if (text.at(start + offset) != sub.at(offset)) break;
       if (offset == size2)  // matched
         return start;
@@ -89,7 +89,7 @@ int findSubStr(string text, string sub) {
 
 int findLengthOfLongestPalindrome(string text) {
   for (int i = 0; i < text.length() - 1; ++i) {
-    for (int j = text.length() - 1; j > i; j--)
+    for (int j = text.length() - 1; j > i; --j)
       if (isPalindrome(text, i, j)) {
         // cout << text << " " << i << " " << j << endl;
         return (j - i + 1);

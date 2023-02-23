@@ -1,6 +1,6 @@
 #include "search.hpp"
 
-int binarySearch(int arr[], int size, int key) {
+int binarySearch(int *arr, int size, int key) {
 
   int left = 0;
   int right = size - 1;
@@ -17,28 +17,28 @@ int binarySearch(int arr[], int size, int key) {
   return -1;
 }
 
-int linearSearch(int arr[], int size, int key) {
+int linearSearch(int *arr, int size, int key) {
   for (int i = 0; i < size; ++i)
     if (key == arr[i])
       return i;
   return -1;
 }
 
-int linearSearchLast(int arr[], int size, int key) {
-  for (int i = size - 1; i >= 0; i--)
+int linearSearchLast(int *arr, int size, int key) {
+  for (int i = size - 1; i >= 0; --i)
     if (key == arr[i])
       return i;
   return -1;
 }
 
-int linearSearchLast1(int arr[], int size, int key) {
+int linearSearchLast1(int *arr, int size, int key) {
   for (int i = 0; i < size; ++i)
     if (key == arr[size - 1 - i])
       return size - 1 - i;
   return -1;
 }
 
-int linearSearchLast2(int arr[], int size, int key) {
+int linearSearchLast2(int *arr, int size, int key) {
   int index = -1;
   for (int i = 0; i < size; ++i)
     if (key == arr[i])
