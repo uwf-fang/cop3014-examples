@@ -1,20 +1,25 @@
-TARGETS=main
-OBJS=main.o search.o
-CXX=g++
-FLAGS=-std=c++14 -Wall
-RM=rm -rf
+SHELL := /bin/bash
+CXX := g++
+LFLAGS :=
+CXXFLAGS := -g -std=c++14 -Wall -Werror=return-type  -Werror=uninitialized \
+			-Wno-sign-compare
+RM := rm -rf
+TARGETS := test-search
+SOURCES := $(wildcard *.cpp)
+HEADERS := $(wildcard *.hpp)
+OBJECTS := $(SOURCES:.cpp=.o)
 
 .PHONY: clean
 
 all: $(TARGETS)
 
-# Target rules
-main: $(OBJS)
-	$(CXX) -o $@ $^
-
 # General compilation rules
-%.o: %.cpp
-	$(CXX) $(FLAGS) -c $<
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $<
+
+test-search: test-search.o search.o
+	$(CXX) $(LFLAGS) -o $@ $^
+	./$@
 
 clean:
 	$(RM) *.o $(TARGETS) *.gc* *.dSYM
