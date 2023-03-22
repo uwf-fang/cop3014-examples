@@ -20,8 +20,8 @@ void ThreeDimEleMultiply5(double ThreeDimArray[][5][10], int rows, int cols, dou
 // must remember to 'delete'
 void DynMatrixEleMultiply(double **matrix, int rows, int cols, double factor);
 
-void printMatrix(double mat[][COLS], int ROWS, int COLS);
-void printMatrix(double ** dynMat, int ROWS, int COLS); // function overloading
+void printMatrix(double mat[][COLS], int rows, int cols);
+void printMatrix(double ** dynMat, int rows, int cols); // function overloading
 
 int main(int argc, char const *argv[])
 {
@@ -63,26 +63,26 @@ void DynMatrixEleMultiply(double **matrix, int rows, int cols, double factor) {
       matrix[i][j] *= factor;
 }
 
-void printMatrix(double mat[][COLS], int ROWS, int COLS) {
-  for (int i = 0; i < ROWS; ++i)
+void printMatrix(double mat[][COLS], int rows, int cols) {
+  for (int i = 0; i < rows; ++i)
   {
-    for (int j = 0; j < COLS; ++j)
+    for (int j = 0; j < cols; ++j)
     {
       cout << mat[i][j];
-      if (j < COLS - 1)
+      if (j < cols - 1)
         cout << " ";
     }
     cout << endl;
   }
 }
 
-void printMatrix(double **dynMat, int ROWS, int COLS) {
-  for (int i = 0; i < ROWS; ++i)
+void printMatrix(double **dynMat, int rows, int cols) {
+  for (int i = 0; i < rows; ++i)
   {
-    for (int j = 0; j < COLS; ++j)
+    for (int j = 0; j < cols; ++j)
     {
       cout << dynMat[i][j];
-      if (j < COLS - 1)
+      if (j < cols - 1)
         cout << " ";
     }
     cout << endl;
