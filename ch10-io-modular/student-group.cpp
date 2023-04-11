@@ -37,14 +37,13 @@ void Student::parse(const string &infoString) {
 string Student::toStr() {
   ostringstream outSS;
   outSS << name << ',' << age << ',';
-  for (int i = 0; i < MAX_COURSES && !courses[i].empty(); ++i) {
+  for (int i = 0; i < count; ++i)
     outSS << courses[i] << ' ';  // will have an extra space at the end of line
-  }
   return outSS.str();
 }
 
 // 40 students at most
-StudentGroup::StudentGroup(): capacity(40), students(new Student[capacity]) {}
+StudentGroup::StudentGroup(int capacity): capacity(capacity), students(new Student[capacity]) {}
 
 bool StudentGroup::loadFile(const string &filePath) {
   ifstream inFile(filePath);
@@ -60,12 +59,10 @@ bool StudentGroup::loadFile(const string &filePath) {
     getline(inFile, line);
     if (inFile.fail())
       break;
-    if (line.empty()) // skip empty lines
-      continue;
     students[i].parse(line);
   }
   size = i;
-//  cout << "Loaded " << i << " lines\n";
+  cout << "Loaded " << i << " lines\n";
   loaded = (i > 0);  // at least one line is parsed
   inFile.close();
   return loaded;
@@ -82,9 +79,8 @@ bool StudentGroup::saveFile(string filePath) {
     return false;
   }
   int i;
-  for (i = 0; i < size; ++i) {
+  for (i = 0; i < size; ++i)
     outFile << students[i].toStr() << endl;
-  }
   outFile.close();
   saved = true;
   return saved;

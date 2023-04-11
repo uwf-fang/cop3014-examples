@@ -18,7 +18,7 @@ constexpr int MAX_COURSES = 5;  // constexpr is similar to const, since c++11
 class Student {
   string name;
   int age;
-  string courses[MAX_COURSES];
+  string courses[MAX_COURSES];  // may need to implement deep copy as needed
   int count;
  public:
   Student();
@@ -34,7 +34,7 @@ class StudentGroup {
   bool loaded;
   bool saved;
  public:
-  StudentGroup();
+  StudentGroup(int capacity = 40);
   ~StudentGroup();
   bool loadFile(const string &filePath);
   bool saveFile(string filePath);
