@@ -3,8 +3,6 @@
  * @author Ian Fang
  * @brief Implementation of Student and StudentGroup classes
  *
- * @copyright Copyright (c) 2022
- *
  */
 #include "student-group.hpp"
 #include <sstream>
@@ -36,14 +34,16 @@ void Student::parse(const string &infoString) {
 
 string Student::toStr() {
   ostringstream outSS;
-  outSS << name << ',' << age << ',';
+  outSS << name << ' | ' << age << ' | ';
   for (int i = 0; i < count; ++i)
     outSS << courses[i] << ' ';  // will have an extra space at the end of line
   return outSS.str();
 }
 
-// 40 students at most
-StudentGroup::StudentGroup(int capacity): capacity(capacity), students(new Student[capacity]) {}
+StudentGroup::StudentGroup(int capacity):
+    capacity(capacity),
+    students(new Student[capacity]),
+    size(0) {}
 
 bool StudentGroup::loadFile(const string &filePath) {
   ifstream inFile(filePath);
@@ -63,9 +63,8 @@ bool StudentGroup::loadFile(const string &filePath) {
   }
   size = i;
   cout << "Loaded " << i << " lines\n";
-  loaded = (i > 0);  // at least one line is parsed
   inFile.close();
-  return loaded;
+  return true;
 }
 
 StudentGroup::~StudentGroup() {
@@ -82,6 +81,5 @@ bool StudentGroup::saveFile(string filePath) {
   for (i = 0; i < size; ++i)
     outFile << students[i].toStr() << endl;
   outFile.close();
-  saved = true;
-  return saved;
+  return true;
 }

@@ -21,8 +21,8 @@ void fileReadTestRun() {
 
   // alternative method
   // if (inFS.fail()) {
-  //     cerr << "Error\n";
-  //     return EXIT_FAILURE;
+  //   cerr << "Error\n";
+  //   exit(EXIT_FAILURE);
   // }
 
   // === Read numbers from a file until the end of file ===
@@ -32,9 +32,8 @@ void fileReadTestRun() {
   // 1. Cleanest method, stop on fail
   //    ONLY works when there is only one type of data to be read from a file
   cout << "Method 1\n";
-  while (inFS >> num) {
+  while (inFS >> num)
     cout << num << endl;
-  }
 
   // reset the read position
   // must call clear first before c++11
@@ -55,7 +54,7 @@ void fileReadTestRun() {
 
   // reset the read position
   inFS.clear();
-  inFS.seekg(0);  // rewind to the beginnign of the file
+  inFS.seekg(0);  // rewind to the beginning of the file
 
   // 3. While, stop on fail
   // NOT RECOMMENDED! Redundant

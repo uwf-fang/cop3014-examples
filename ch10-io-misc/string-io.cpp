@@ -12,62 +12,68 @@
 
 using namespace std;
 
-struct StudentInfo {
+class StudentInfo {
+ private:
   string name;
   int age;
   double height;
-  string to_str() {
+ public:
+  void parse1(const string &line);
+  void parse2(const string &line);
+  void parse3(const string &line);
+  string toStr() {
     ostringstream outSS;
     outSS << "Name: " << name << " age: " << age;
-    outSS << " Height: " << setprecision(1) << fixed << height << endl;
+    outSS << " Height: " << setprecision(1) << fixed << height;
     return outSS.str();
   }
 };
 
-StudentInfo parse1(const string &line) {
-  StudentInfo result;
+void StudentInfo::parse1(const string &line) {
   string junk;
-  stringstream inSS(line);
-  getline(inSS, result.name, ',');
-  inSS >> result.age;
+  istringstream inSS(line);
+  getline(inSS, name, ',');
+  inSS >> age;
   getline(inSS, junk, ',');  // discard the ,
-  inSS >> result.height;
-  return result;
+  inSS >> height;
 }
 
-StudentInfo parse2(const string &line) {
-  StudentInfo result;
-  stringstream inSS(line);
+void StudentInfo::parse2(const string &line) {
+  istringstream inSS(line);
   string ageStr;
   string heightStr;
-  getline(inSS, result.name, ',');
+  getline(inSS, name, ',');
   getline(inSS, ageStr, ',');
   getline(inSS, heightStr);  // read to eof
-  result.age = stoi(ageStr);
-  result.height = stod(heightStr);
-  return result;
+  age = stoi(ageStr);
+  height = stod(heightStr);
 }
 
-StudentInfo parse3(const string &line) {
-  StudentInfo result;
+void StudentInfo::parse3(const string &line) {
   int comma1 = line.find(',');
   int comma2 = line.find(',', comma1 + 1);
-  result.name = line.substr(0, comma1);
-  result.age = stoi(line.substr(comma1 + 1, comma2 - comma1 ));
-  result.height = stod(line.substr(comma2 + 1, line.length() - comma2 ));
-  return result;
+  name = line.substr(0, comma1);
+  age = stoi(line.substr(comma1 + 1, comma2 - comma1 ));
+  height = stod(line.substr(comma2 + 1, line.length() - comma2 ));
 }
 
 int main() {
-  string data = "John Smith, 20, 181.3";
-  string data1 = "Mary Smith, 20, 161.3";
+  StudentInfo info;
+  string data1 = "John Smith, 20, 181.3";
+  string data2 = "Mary D. Smith, 18, 161.3";
 
-  cout << parse1(data).to_str() << endl << endl;
-  cout << parse2(data).to_str() << endl << endl;
-  cout << parse3(data).to_str() << endl << endl;
+  info.parse1(data1);
+  cout << "Parse1" << info.toStr() << endl << endl;
+  info.parse2(data1);
+  cout << "Parse2" << info.toStr() << endl << endl;
+  info.parse3(data1);
+  cout << "Parse3" << info.toStr() << endl << endl;
 
-  cout << parse1(data1).to_str() << endl << endl;
-  cout << parse2(data1).to_str() << endl << endl;
-  cout << parse3(data1).to_str() << endl << endl;
+  info.parse1(data2);
+  cout << "Parse1" << info.toStr() << endl << endl;
+  info.parse2(data2);
+  cout << "Parse2" << info.toStr() << endl << endl;
+  info.parse3(data2);
+  cout << "Parse3" << info.toStr() << endl << endl;
 
 }

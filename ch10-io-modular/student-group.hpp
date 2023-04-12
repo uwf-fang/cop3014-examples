@@ -31,8 +31,6 @@ class StudentGroup {
   int capacity;  // must be declared before students so it will be initialized first in the constructor
   Student *students;  // dynamic array
   int size;
-  bool loaded;
-  bool saved;
  public:
   StudentGroup(int capacity = 40);
   ~StudentGroup();
